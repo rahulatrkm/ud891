@@ -1,7 +1,7 @@
 page('/', function() {
   page.redirect('/what-is-vegemite');
 });
-
+let isFirstPage = true;
 page('/:slug', function(context) {
   // This will match any value after the first / in the url. For example, if
   // the url was /foo, the value of slug would be "foo".
@@ -18,6 +18,12 @@ page('/:slug', function(context) {
   var newPage = document.querySelector('main [data-page='+slug+']');
   newMenuItem.classList.add('is-active');
   newPage.classList.add('is-active');
+
+  if(isFirstPage) {
+    isFirstPage = false;
+    return;
+  }
+  newPage.querySelector('h2').focus();
 
 });
 
